@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 import re
-# from . import facilities_data
 
 def page_scraper_room_block(resHtml, hotelid):
     # meal_facilities_const = [1, 166, 167, 168, 169, 170, 171, 217, 218, 219, 220]
