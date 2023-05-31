@@ -22,28 +22,28 @@ def create_tables():
     except Error as e:
         print(f"Error connecting to MySQL: {e}")
 
-    try:
-       cursor.execute("DROP TABLE upz_hotels_photos_test1")
-    except:
-        pass 
+    # try:
+    #    cursor.execute("DROP TABLE upz_hotels_photos_test1")
+    # except:
+    #     pass 
 
-    try:
-        cursor.execute("DROP TABLE upz_hotels_description_test1")
-    except:
-        pass 
+    # try:
+    #     cursor.execute("DROP TABLE upz_hotels_description_test1")
+    # except:
+    #     pass 
 
-    try:
-       cursor.execute("DROP TABLE upz_hotels_facilityties_test1")
-    except:
-        pass 
-    try:
-       cursor.execute("DROP TABLE upz_hotels_rooms_test1")
-    except:
-        pass 
-    try:
-       cursor.execute("DROP TABLE upz_hotels_rooms_blocks_test1")
-    except:
-        pass
+    # try:
+    #    cursor.execute("DROP TABLE upz_hotels_facilityties_test1")
+    # except:
+    #     pass 
+    # try:
+    #     cursor.execute("DROP TABLE upz_hotels_rooms")
+    # except:
+    #     pass 
+    # try:
+    #     cursor.execute("DROP TABLE upz_hotels_rooms_blocks")
+    # except:
+    #     pass
     # try:
     #    cursor.execute("DROP TABLE black_list_test2")
     # except:
@@ -94,10 +94,10 @@ def create_tables():
     )
     '''
     create_table_query4 = '''
-    CREATE TABLE upz_hotels_rooms_test1 (
+    CREATE TABLE upz_hotels_rooms (
         id INT AUTO_INCREMENT PRIMARY KEY,
-        hotelid INT(11),
-        roomid INT(11),
+        hotelid INT(15),
+        roomid INT(15),
         endescription TEXT,
         allow_children TINYINT(1),
         photo1 VARCHAR(255),
@@ -111,14 +111,22 @@ def create_tables():
         photo9 VARCHAR(255),
         photo10 VARCHAR(255),
         private_bathroom_highlight VARCHAR(255),
-        bed_configurations TINYINT(3)    
+        bed_configurations TINYINT(3),
+        UNIQUE (roomid) 
     )
     '''
+
+    alert_table_query2 = '''
+    ALTER TABLE upz_hotels_rooms
+    MODIFY bed_configurations INT
+    '''
+
+    
     create_table_query5 = '''
-    CREATE TABLE upz_hotels_rooms_blocks_test1 (
+    CREATE TABLE upz_hotels_rooms_blocks (
         id INT AUTO_INCREMENT PRIMARY KEY,
-        hotelid INT(11),
-        room_id INT(11),
+        hotelid INT(15),
+        room_id INT(15),
         gross_price FLOAT,
         currency VARCHAR(15),
         room_name VARCHAR(255),
@@ -127,15 +135,17 @@ def create_tables():
         mealplan VARCHAR(255),
         room_surface_in_m2 FLOAT,
         nr_adults SMALLINT(4),
-        all_inclusive TINYINT(1)    
+        all_inclusive TINYINT(1),
+        UNIQUE (room_id)
+           
     )
     '''
-    cursor.execute(create_table_query1)
-    cursor.execute(create_table_query2)
-    cursor.execute(create_table_query3)
-    cursor.execute(create_table_query4)
-    cursor.execute(create_table_query5)
-    # cursor.execute(alert_table_query1)
+    # cursor.execute(create_table_query1)
+    # cursor.execute(create_table_query2)
+    # cursor.execute(create_table_query3)
+    # cursor.execute(create_table_query4)
+    # cursor.execute(create_table_query5)
+    cursor.execute(alert_table_query2)
 
     cursor.close()
     conn.close()
@@ -143,7 +153,7 @@ def create_tables():
     return print("the tables was created successfully")
 
 
-# create_tables()
+create_tables()
 
 
 # python create_tables_db.py

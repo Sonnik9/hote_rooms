@@ -81,6 +81,7 @@ def random_headers():
 
 def grendMather_controller(data):
     # print('hello controler')
+    flagTest = True
     flag_room = True 
     roomInd = 0
 
@@ -124,7 +125,7 @@ def grendMather_controller(data):
         # return
     except Exception as ex:
         # print(f"str83___{ex}")
-        return [None] 
+        return [None, None] 
     try:
         roomInd = data_upz_hotels_item_dict["room"]
     except:
@@ -137,10 +138,10 @@ def grendMather_controller(data):
     except:
         pass
     if flag_room == False:  
-        return [None]     
+        return [None, None]     
     else:
         # n_range = 2
-        for _ in range(3):
+        for _ in range(2):
             try:
                 result_rooms_upz, upz_hotels_rooms_blocks = '', ''
 
@@ -155,30 +156,29 @@ def grendMather_controller(data):
                     print(f"headers281____{ex}")
                 # print(headerss)
                 
-                k = 2 / random.randrange(1, 5)
-                m = 1 / random.randrange(1, 11)
-                g = random.randrange(1, 5)
-                n = round(g + k + m, 2) 
-                time.sleep(n)  
+                # k = 2 / random.randrange(1, 5)
+                # m = 1 / random.randrange(1, 11)
+                # g = random.randrange(1, 5)
+                # n = round(g + k + m, 2) 
+                # time.sleep(n)  
                 try:     
-                    r = requests.get(fixed_url, headers=headerss, proxies=proxy_item)
+                    r = requests.get(fixed_url, headers=headerss, allow_redirects=False, proxies=proxy_item, timeout=(6.15, 21.15))
                     r.raise_for_status()               
                     if r.status_code == 404: 
-                        return None
+                        return [None, None]
                     if r.status_code == 200 and r.text is not None and r.text != '':
                         try:                      
                             try:
                                 result_rooms_upz = rooms_func.page_scraper_room(r.text, hotelid)
                             except:
-                                result_rooms_upz = None 
-
+                                result_rooms_upz = None
                         
                             try:
                                 upz_hotels_rooms_blocks = rooms_block_func.page_scraper_room_block(r.text, hotelid)
                             except:
                                 upz_hotels_rooms_blocks = None
 
-                            if result_rooms_upz or result_rooms_upz or upz_hotels_rooms_blocks is None:
+                            if result_rooms_upz or upz_hotels_rooms_blocks is None:
                                 continue                             
 
                         except Exception as ex:
@@ -204,7 +204,7 @@ def grendMather_controller(data):
         except Exception as ex:
             # print(f"220____{ex}")
 
-            return [None] 
+            return [None, None] 
         
 # ////////// grendMather_controller block end/////////////////////////////////////
 #         
@@ -366,8 +366,8 @@ def main():
         'n1': 0,
         'n2': 0,
         'interval': 1000,
-        'from_item': 0,
-        'len_items': 326000,
+        'from_item': 30000,
+        'len_items': 100000,
         'counter': 0,
         'flag_end_cycles': False,
         'cpu_count': 22

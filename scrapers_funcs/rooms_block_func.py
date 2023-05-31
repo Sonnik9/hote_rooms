@@ -78,24 +78,24 @@ def page_scraper_room_block(resHtml, hotelid):
                 except:
                     pass
     
-                try:
-                    result_room_block_upz.append({
-                        "hotelid": int(hotelid),
-                        'room_id': int(room_id),                    
-                        # 'gross_price': float(gross_price), 
-                        # 'currency': currency,  
-                        'room_name': name_room,                  
-                        'nr_children': nr_children,
-                        'max_occupancy': max_occupancy,
-                        # 'mealplan': mealplan,
-                        # 'room_surface_in_m2': float(room_surface_in_m2),
-                        'nr_adults': nr_adults,
-                        # 'all_inclusive': int(all_inclusive),
+                # try:
+                result_room_block_upz.append({
+                    "hotelid": int(hotelid),
+                    'room_id': int(room_id),                    
+                    # 'gross_price': float(gross_price), 
+                    # 'currency': currency,  
+                    'room_name': name_room,                  
+                    'nr_children': nr_children,
+                    'max_occupancy': max_occupancy,
+                    # 'mealplan': mealplan,
+                    # 'room_surface_in_m2': float(room_surface_in_m2),
+                    'nr_adults': nr_adults,
+                    # 'all_inclusive': int(all_inclusive),
 
-                    })
-                except Exception as ex:
+                })
+                # except Exception as ex:
                     # print(f"150____{ex}") 
-                    pass
+                    # pass
                     # return None 
             except:
                 continue

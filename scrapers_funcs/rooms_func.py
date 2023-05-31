@@ -188,29 +188,29 @@ def page_scraper_room(resHtml, hotelid):
                 except Exception as ex:
                     # print(f"140____{ex}")  
                     pass
-                try:
-                    result_room_upz.append({
-                        "hotelid": int(hotelid),
-                        'roomid': int(room_id),                    
-                        'endescription': str(endescription), 
-                        'allow_children': int(allow_children),
-                        'photo1': photo1,
-                        'photo2': photo2,
-                        'photo3': photo3,
-                        'photo4': photo4,
-                        'photo5': photo5,
-                        'photo6': photo6,
-                        'photo7': photo7,
-                        'photo8': photo8,
-                        'photo9': photo9,
-                        'photo10': photo10,                  
-                        'private_bathroom_highlight': private_bathroom_highlight,
-                        'bed_configurations': int(bed_config)
-                    })
+                # try:
+                result_room_upz.append({
+                    "hotelid": int(hotelid),
+                    'room_id': int(room_id),                    
+                    'endescription': str(endescription), 
+                    'allow_children': int(allow_children),
+                    'photo1': photo1,
+                    'photo2': photo2,
+                    'photo3': photo3,
+                    'photo4': photo4,
+                    'photo5': photo5,
+                    'photo6': photo6,
+                    'photo7': photo7,
+                    'photo8': photo8,
+                    'photo9': photo9,
+                    'photo10': photo10,                  
+                    'private_bathroom_highlight': private_bathroom_highlight,
+                    'bed_configurations': int(bed_config)
+                })
 
-                except Exception as ex:
+                # except Exception as ex:
                     # print(f"150____{ex}") 
-                    pass
+                    # pass
                     # return None 
             except:
                 continue
