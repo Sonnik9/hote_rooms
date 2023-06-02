@@ -370,7 +370,7 @@ def main():
         'len_items': 326855,
         'counter': 0,
         'flag_end_cycles': False,
-        'cpu_count': 22
+        'cpu_count': 64
     }  
 
     try:
