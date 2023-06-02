@@ -96,9 +96,11 @@ def writerr_table(conn, cursor, resRooms, resRoomsBlock):
     room_white = []
     room_white_add = []
     room_white_set = set()
+    room_white_batch_set = set()
     roomBlock_white = []
     roomBlock_white_add = []
     roomBlock_white_set = set() 
+    roomBlock_white_batch_set = set()
     try:
         query4 = "INSERT INTO upz_hotels_rooms (hotelid, roomid, endescription, allow_children, photo1, photo2, photo3, photo4, photo5, photo6, photo7, photo8, photo9, photo10, private_bathroom_highlight, bed_configurations) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 
@@ -109,17 +111,20 @@ def writerr_table(conn, cursor, resRooms, resRoomsBlock):
             try:
                 values = (item["hotelid"], item["room_id"], item["endescription"], item["allow_children"], item["photo1"], item["photo2"], item["photo3"], item["photo4"], item["photo5"], item["photo6"], item["photo7"], item["photo8"], item["photo9"], item["photo10"], item["private_bathroom_highlight"], item["bed_configurations"])
                 batch_values.append(values)
-                room_white_set.add(item["hotelid"])
+                room_white_batch_set.add(item["hotelid"])
 
                 if len(batch_values) >= batch_size:
                     try:
                         cursor.executemany(query4, batch_values)
                         conn.commit()
+                        room_white_set.update(room_white_batch_set)
+                        room_white_batch_set = {}
                         batch_values = []
                     except Exception as ex:
                         print(f"117___{ex}")                        
                         room_white_add = insert_rows_individually_room(conn, cursor, query4, batch_values)
                         room_white += room_white_add
+                        room_white_batch_set = {}
                         batch_values = []
                         continue                   
 
@@ -131,10 +136,12 @@ def writerr_table(conn, cursor, resRooms, resRoomsBlock):
             try:
                 cursor.executemany(query4, batch_values)
                 conn.commit()
+                room_white_set.update(room_white_batch_set)
             except Exception as ex:
                 print(f"130___{ex}")
                 room_white_add = insert_rows_individually_room(conn, cursor, query4, batch_values)
                 room_white += room_white_add
+                room_white_batch_set = {}
     except Exception as ex:
         print(f"123___{ex}")
         pass
@@ -149,17 +156,20 @@ def writerr_table(conn, cursor, resRooms, resRoomsBlock):
             try:
                 values = (item["hotelid"], item["room_id"], item["room_name"], item["nr_children"], item["max_occupancy"], item["nr_adults"])
                 batch_values.append(values)
-                roomBlock_white_set.add(item["hotelid"])
+                roomBlock_white_batch_set.add(item["hotelid"])
 
                 if len(batch_values) >= batch_size:
                     try:
                         cursor.executemany(query5, batch_values)
                         conn.commit()
+                        roomBlock_white_set.update(roomBlock_white_batch_set)
+                        roomBlock_white_batch_set = {}
                         batch_values = []
                     except Exception as ex:
                         print(f"153___{ex}")
                         roomBlock_white_add = insert_rows_individually_block(conn, cursor, query5, batch_values)
                         roomBlock_white += roomBlock_white_add
+                        roomBlock_white_batch_set = {}
                         batch_values = []
                         continue
 
@@ -171,10 +181,12 @@ def writerr_table(conn, cursor, resRooms, resRoomsBlock):
             try:
                 cursor.executemany(query5, batch_values)
                 conn.commit()
+                roomBlock_white_set.update(roomBlock_white_batch_set)
             except Exception as ex:
                 print(f"167___{ex}")
                 roomBlock_white_add = insert_rows_individually_block(conn, cursor, query5, batch_values)
                 roomBlock_white += roomBlock_white_add
+                roomBlock_white_batch_set = {}
             
     except Exception as ex:
         print(f"170___{ex}")

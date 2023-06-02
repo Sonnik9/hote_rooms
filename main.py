@@ -366,8 +366,8 @@ def main():
         'n1': 0,
         'n2': 0,
         'interval': 1000,
-        'from_item': 30000,
-        'len_items': 100000,
+        'from_item': 57000,
+        'len_items': 1000000,
         'counter': 0,
         'flag_end_cycles': False,
         'cpu_count': 22
@@ -391,5 +391,21 @@ if __name__ == "__main__":
         sys.exit()
     except Exception as ex:
         print(f"467______{ex}")
+
+
+
+# u9FSEvF3:igzQ94p1@212.6.36.101:62362
+# u9FSEvF3:igzQ94p1@77.90.155.134:63018
+# u9FSEvF3:igzQ94p1@154.7.210.206:60790
+# u9FSEvF3:igzQ94p1@87.247.143.202:63698
+# u9FSEvF3:igzQ94p1@62.3.3.131:62764
+# u9FSEvF3:igzQ94p1@193.58.178.71:63514
+# u9FSEvF3:igzQ94p1@193.232.42.59:63076
+# u9FSEvF3:igzQ94p1@193.232.41.147:62566
+# u9FSEvF3:igzQ94p1@149.104.228.17:63370
+# u9FSEvF3:igzQ94p1@149.104.229.30:64744
+
+
+
   
 
