@@ -367,10 +367,10 @@ def main():
         'n2': 0,
         'interval': 1000,
         'from_item': 57000,
-        'len_items': 1000000,
+        'len_items': 326859,
         'counter': 0,
         'flag_end_cycles': False,
-        'cpu_count': 22
+        'cpu_count': 64
     }  
 
     try:
