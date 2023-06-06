@@ -194,9 +194,9 @@ def writerr_table(conn, cursor, resRooms, resRoomsBlock):
     try:
         room_white += list(room_white_set)
         roomBlock_white += list(roomBlock_white_set)                   
-        whiteList = [item for item in roomBlock_white if item in room_white]
+        whiteList = list(set(room_white) & set(roomBlock_white))
     except Exception as ex:
-        print(ex)
+        print(f"199 writer___{ex}")
 
     return whiteList
 

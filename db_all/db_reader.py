@@ -34,8 +34,8 @@ def db_opener(n1, n2):
             query_last_item = "SELECT COUNT(*) FROM upz_hotels;"
             cursor.execute(query_last_item)
             last_item = cursor.fetchone()[0]
-            p2 = int(last_item) - int(n1) + 1
-            p1 = int(last_item) - int(n2) + 1
+            p2 = int(last_item) - 5000 - int(n1) + 1
+            p1 = int(last_item) - 5000 - int(n2) + 1
         except:
             pass
 
