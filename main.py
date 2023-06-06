@@ -162,7 +162,7 @@ def grendMather_controller(data):
                 # n = round(g + k + m, 2) 
                 # time.sleep(n)  
                 try:     
-                    r = requests.get(fixed_url, headers=headerss, allow_redirects=False, proxies=proxy_item, timeout=(6.15, 21.15))
+                    r = requests.get(fixed_url, headers=headerss, allow_redirects=False, proxies=proxy_item, timeout=(12.15, 21.15))
                     r.raise_for_status()               
                     if r.status_code == 404: 
                         return [None, None]
@@ -194,16 +194,13 @@ def grendMather_controller(data):
 
             except Exception as ex:
                 # print(f"237____{ex}")
-                continue
-                # return [[None], black_list] 
+                continue             
       
-        try:
-            # print(result_description_upz)
+        try:           
             return [result_rooms_upz, upz_hotels_rooms_blocks] 
         
         except Exception as ex:
             # print(f"220____{ex}")
-
             return [None, None] 
         
 # ////////// grendMather_controller block end/////////////////////////////////////
@@ -281,7 +278,7 @@ def cycles_worker(**args_cycles):
                 if interval_chekcer <= interval:
                     n2 = len_items
                     flag_end_cycles = True
-                    # print(f"362___{n2}")
+                   
             except Exception as ex:
                 # print(f"343____{ex}")
                 pass
@@ -366,11 +363,11 @@ def main():
         'n1': 0,
         'n2': 0,
         'interval': 5000,
-        'from_item': 58000,
+        'from_item': 0,
         'len_items': 326859,
         'counter': 0,
         'flag_end_cycles': False,
-        'cpu_count': 64
+        'cpu_count': 40
     }  
 
     try:
